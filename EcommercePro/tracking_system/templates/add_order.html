@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Order</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Order Management</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/tr/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/tr/add_order/"
+              >Add Order</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1 class="mt-5">Add New Order</h1>
+      <form id="orderForm">
+        <div class="form-group">
+          <label for="orderID">Order ID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="orderID"
+            name="orderID"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="orderName">Order Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="orderName"
+            name="orderName"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="userName">User Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="userName"
+            name="userName"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select class="form-control" id="status" name="status" required>
+            <option value="">Select Status</option>
+            <option value="requested">Requested</option>
+            <option value="delivering">Delivering</option>
+            <option value="delivered">Delivered</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <!-- Place for alert messages -->
+      <div id="alertMessage" class="mt-4"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#orderForm").submit(function (event) {
+          event.preventDefault(); // Prevent form from submitting the traditional way
+
+          const formData = {
+            orderID: $("#orderID").val(),
+            orderName: $("#orderName").val(),
+            userName: $("#userName").val(),
+            status: $("#status").val(),
+          };
+
+          $.ajax({
+            type: "POST",
+            url: "/tr/postdata/",
+            data: formData,
+            success: function (response) {
+              $("#alertMessage").html(
+                `<div class="alert alert-success">${response.message}</div>`
+              );
+              $("#orderForm")[0].reset(); // Optionally reset the form after success
+            },
+            error: function (xhr) {
+              const error = xhr.responseJSON
+                ? xhr.responseJSON.error
+                : "An error occurred";
+              $("#alertMessage").html(
+                `<div class="alert alert-danger">${error}</div>`
+              );
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
