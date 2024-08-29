@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <title>{% block title %}My Store{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'mart' %}">Mart</a></li>
+        <li><a href="{% url 'cart' %}">Cart</a></li>
+      </ul>
+    </nav>
+
+    <div>{% block content %}{% endblock %}</div>
+
+    <footer>
+      <p>© 2024 My Store</p>
+    </footer>
+  </body>
+</html>
