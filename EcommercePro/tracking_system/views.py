@@ -30,7 +30,7 @@ def home(request):
     # Convert DataFrame to HTML for rendering
     df_html = df.to_html(classes='table table-striped')
 
-    return render(request, 'home.html', {'df_html': df_html})
+    return render(request, 'tr/home.html', {'df_html': df_html})
 
 
 # -------------------------------------------------------------------
@@ -38,7 +38,7 @@ def home(request):
 # -------------------------------------------------------------------
 
 def add_order(request):
-    return render(request, 'add_order.html')
+    return render(request, 'tr/add_order.html')
 
 
 

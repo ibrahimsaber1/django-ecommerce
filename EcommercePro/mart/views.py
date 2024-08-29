@@ -10,11 +10,11 @@ PRODUCTS = [
 ]
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'mart/index.html')
 
 def mart(request):
     context = {'products': PRODUCTS}
-    return render(request, 'mart.html', context)
+    return render(request, 'mart/mart.html', context)
 
 def cart(request):
     cart_products = []
@@ -22,4 +22,4 @@ def cart(request):
         product_ids = request.POST.getlist('product')
         cart_products = [p for p in PRODUCTS if str(p['id']) in product_ids]
     context = {'cart_products': cart_products}
-    return render(request, 'cart.html', context)
+    return render(request, 'mart/cart.html', context)

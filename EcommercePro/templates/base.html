@@ -6,8 +6,49 @@
     {% load static %}
     <title>{% block title %}My Store{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Order Management</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/">home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/mart/">Mart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/cart/">Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/tr/">tracking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://127.0.0.1:8000/tr/add_order/"
+              >Add Order</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    {% comment %}
     <nav>
       <ul>
         <li><a href="{% url 'index' %}">Home</a></li>
@@ -15,6 +56,7 @@
         <li><a href="{% url 'cart' %}">Cart</a></li>
       </ul>
     </nav>
+    {% endcomment %}
 
     <div>{% block content %}{% endblock %}</div>
 

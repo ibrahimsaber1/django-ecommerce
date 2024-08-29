@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'mart.apps.MartConfig',
-    'tracking_system',
+    'tracking_system.apps.TrackingSystemConfig',
 ]
 
 MIDDLEWARE = [
