@@ -10,7 +10,17 @@ PRODUCTS = [
 ]
 
 def index(request):
-    return render(request, 'mart/index.html')
+    products = {"glasses":550, "t-shirt":700}
+    if request.method == 'POST':
+        selected_items = request.POST.getlist("options")
+        print(selected_items)
+        base_url = "/show/"
+        query_string = urlencode({"options": selected_items})
+        url = f"{base_url}?{query_string}"
+        return redirect(url)
+    
+    return render(request, 'mart/index.html', {"products_dict": products})
+
 
 def mart(request):
     context = {'products': PRODUCTS}
